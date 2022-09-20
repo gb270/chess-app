@@ -67,6 +67,15 @@ class HumanVsHuman extends Component {
       promotion: "q" // always promote to a queen for example simplicity
     });
 
+    // highlight king that is in checkmate or highlight both kings if it is stalemate/agreed draw
+    // TODO: change colour depending on how the game has ended
+    if (this.game.game_over()){
+      console.log("game over");
+      this.setState({
+        squareStyles: { "e4": { backgroundColor: "deepPink" } }
+      });
+    }
+    
     // illegal move
     if (move === null) return;
     this.setState(({ history, pieceSquare }) => ({
@@ -145,7 +154,7 @@ class HumanVsHuman extends Component {
       dropSquareStyle,
       onDragOverSquare: this.onDragOverSquare,
       onSquareClick: this.onSquareClick,
-      onSquareRightClick: this.onSquareRightClick
+      onSquareRightClick: this.onSquareRightClick,
     });
   }
 }
